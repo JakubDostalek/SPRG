@@ -20,10 +20,25 @@ def read_data(file_name, field):
         if field in data:
             return data[field]
 
+def linear_search(sekvence, number):
+    positions = []
+
+    for i, item in enumerate(sekvence):
+        if item == number:
+            positions.append(i)
+
+    return {
+        "positions": positions, "count": len(positions)
+    }
 
 
 def main():
-    print(read_data("sequential.json", "dna_sequence"))
+    nactena_data = read_data("sequential.json", "dna_sequence")
+    target = "A"
+    vysledek = linear_search(nactena_data, target)
+
+    print(f"Hledane pismeno: {target}")
+    print(f"Výsledek: {vysledek}")
 
 
 if __name__ == '__main__':
