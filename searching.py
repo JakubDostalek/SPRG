@@ -32,14 +32,33 @@ def linear_search(sekvence, number):
     }
 
 
+def binary_search(seznam, hledane_cislo):
+    left = 0
+    right = len(seznam) - 1
+
+    while left <= right:
+        middle = (left + right) // 2
+        prvek_ve_stredu = seznam[middle]
+        if prvek_ve_stredu == hledane_cislo:
+            return middle
+        elif prvek_ve_stredu < hledane_cislo:
+            left = middle + 1
+        else:
+            right = middle - 1
+
+    return None
+
 def main():
-    nactena_data = read_data("sequential.json", "dna_sequence")
-    target = "A"
+    nactena_data = read_data("sequential.json", "unordered_numbers")
+    target = 14
     vysledek = linear_search(nactena_data, target)
 
-    print(f"Hledane pismeno: {target}")
-    print(f"Výsledek: {vysledek}")
+    print(f"Hledane cislo: {target}")
+    print(f"Vysledek: {vysledek}")
 
+    nactena_data2 = read_data("sequential.json", "ordered_numbers")
+    binarni = binary_search(nactena_data2, target)
+    print(binarni)
 
 if __name__ == '__main__':
     main()
